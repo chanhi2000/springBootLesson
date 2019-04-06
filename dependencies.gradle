@@ -1,0 +1,90 @@
+ext {
+	repo = [
+		egov : 'http://www.egovframe.go.kr/maven/',
+		egov2 : 'http://maven.egovframe.kr:8080/maven/',
+		datanucleus : 'http://www.datanucleus.org/downloads/maven2/'
+	]
+
+	versions = [
+		gradle 	: '4.10',
+
+		tomcatCP : '2.2.5',
+		tomcat 	: '7.0.59',
+
+		log4j	: '1.2.17',
+		slf4j	: '1.7.25',
+		ojdbc6 	: '11.2.0.3',
+		spring 	: '4.2.4.RELEASE',
+		egov : '3.7.0',
+		aspectj : '1.9.2',
+		inject : '1',
+
+		servlet : '2.5',
+		servletJsp : '2.1',
+		servletJstl : '1.2',
+
+		hsqldb : '2.3.2',
+		el : "1.0",
+		antlr : '3.5',
+			
+		cDbcp : "1.4",	
+
+		taglib : "1.2.5",
+		
+		junit	: '4.12'
+	]
+
+	cp = [
+			tomcat : "com.bmuschko:gradle-tomcat-plugin:$versions.tomcatCP"
+	]
+	
+	dep = [
+		tomcat 			: 	[
+							"org.apache.tomcat.embed:tomcat-embed-core:$versions.tomcat",
+							"org.apache.tomcat.embed:tomcat-embed-logging-juli:$versions.tomcat",
+							"org.apache.tomcat.embed:tomcat-embed-jasper:$versions.tomcat"
+							],
+		log4j			: 	"log4j:log4j:$versions.log4j",
+		slf4jBase 		:	"org.slf4j:slf4j-api:$versions.slf4j",
+		slf4j 			: 	[
+							"org.slf4j:jcl-over-slf4j:$versions.slf4j",
+							"org.slf4j:slf4j-log4j12:$versions.slf4j"
+							],
+		ojdbc6			: 	"oracle:ojdbc6:$versions.ojdbc6",
+
+		springContext  	: 	"org.springframework:spring-context:$versions.spring",
+		spring			: 	[
+							"org.springframework:spring-webmvc:$versions.spring",
+							"org.springframework:spring-jdbc:$versions.spring"
+							],
+		egovMvc			: 	"egovframework.rte:egovframework.rte.ptl.mvc:$versions.egov",
+		egov 			: 	[
+							"egovframework.rte:egovframework.rte.psl.dataaccess:$versions.egov",
+							"egovframework.rte:egovframework.rte.fdl.idgnr:$versions.egov",
+							"egovframework.rte:egovframework.rte.fdl.property:$versions.egov"
+							],
+		aspectj			: 	[
+							"org.aspectj:aspectjrt:$versions.aspectj",
+							"org.aspectj:aspectjweaver:$versions.aspectj",
+							"org.aspectj:aspectjtools:$versions.aspectj"	
+							],
+		javaxInject		: 	"javax.inject:javax.inject:$versions.inject",
+		javaxServletJstl:	[
+							"javax.servlet.jsp.jstl:jstl-api:$versions.servletJstl",
+							"org.apache.taglibs:taglibs-standard-impl:$versions.taglib",
+							"org.apache.taglibs:taglibs-standard-spec:$versions.taglib"
+							],
+		javaxServlet 	:   [
+							"javax.servlet.jsp:jsp-api:$versions.servletJsp",
+							"javax.servlet:servlet-api:$versions.servlet",
+							],
+		javaxEL			:	"javax.el:el-api:$versions.el",
+		antlr			: 	"org.antlr:antlr:$versions.antlr",
+		hsqldb			: 	"org.hsqldb:hsqldb:$versions.hsqldb",
+		cDbcp			:	"commons-dbcp:commons-dbcp:$versions.cDbcp",	
+		springTest		: 	[
+		        			"org.springframework:spring-test:$versions.spring"
+							],
+		junit			: "junit:junit:$versions.junit"
+	]
+}

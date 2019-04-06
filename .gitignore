@@ -1,0 +1,28 @@
+ipse
+.classpath
+.project
+.settings/
+bin/
+
+# Intellij
+.idea/
+out/
+build/
+*.iml
+*.iws
+
+# Mac
+.DS_Store
+
+# Gradle 
+.gradle/
+<<<<<<< HEAD
+gradle/
+gradlew.*
+gradlew
+=======
+gradlew
+gradlew.*
+>>>>>>> lesson01
+
+*.log
