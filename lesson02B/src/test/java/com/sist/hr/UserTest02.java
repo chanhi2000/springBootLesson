@@ -4,8 +4,6 @@ package com.sist.hr;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-import java.sql.SQLException;
-
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;

@@ -1,16 +1,8 @@
 package com.sist.hr;
 
 public interface CommonDao {
-	
-	public void do_save();
-	
-	
-	public void do_update();
-	
-	
-	public void do_delete();
-	
-	
-	public void do_retrieve();
-
+	void do_save();
+	void do_update();
+	void do_delete();
+	void do_retrieve();
 }

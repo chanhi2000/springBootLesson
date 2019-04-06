@@ -1,7 +1,6 @@
 package com.sist.hr;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,19 +18,14 @@ public class UserDao {
 	
 	
 	private static Logger log = Logger.getLogger(UserDao.class);
-	
+
 	private DataSource dataSource;
-	
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
 
-	public UserDao() {
-		
-		
-	}
+	public UserDao() { }
 
-	
 	public int getCount(String user_id)throws ClassNotFoundException,SQLException{
 		int cnt = 0;
 		//--------------------------------------------

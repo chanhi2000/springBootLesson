@@ -17,5 +17,7 @@ dependencies {
 	implementation dep.ojdbc6
 	implementation dep.log4j
 	implementation dep.spring
+	
+	testImplementation dep.springTest
     testImplementation dep.junit
 }

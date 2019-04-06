@@ -27,8 +27,7 @@ public class UserDaoXmlTest {
 			LOG.debug("=dao="+dao);
 			LOG.debug("=dao01="+dao01);
 			LOG.debug("=============================");
-			
-			
+
 			//--------------------------------
 			//단건 삭제
 			//--------------------------------	
@@ -65,9 +64,6 @@ public class UserDaoXmlTest {
 				LOG.debug("=^^등록실패^^=");
 				LOG.debug("=============================");				
 			}
-			
-	
-
 	}
 
 }

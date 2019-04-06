@@ -5,8 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public interface StatementStrategy {
-	
-	public abstract PreparedStatement makeStatement(Connection c) 
+	PreparedStatement makeStatement(Connection c)
 			throws ClassNotFoundException, SQLException;
-	
 }

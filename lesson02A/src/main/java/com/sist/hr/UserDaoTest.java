@@ -13,7 +13,7 @@ public class UserDaoTest {
 	//115
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		   ApplicationContext context 
-              = new GenericXmlApplicationContext("/applicationContext.xml");
+              = new GenericXmlApplicationContext("applicationContext.xml");
 
 			User user=new User("j_115","김현룡","1224");
 		
@@ -65,9 +65,6 @@ public class UserDaoTest {
 				LOG.debug("=^^등록실패^^=");
 				LOG.debug("=============================");				
 			}
-			
-	
-
 	}
 
 }

@@ -21,7 +21,6 @@ public class UserDao {
 //	 * SID:orcl
 //	 * sist/1224
 	
-	
 	private static Logger log = Logger.getLogger(UserDao.class);
 	private RowMapper<User> userMapper = 
 			new RowMapper<User>() {
@@ -37,24 +36,16 @@ public class UserDao {
 	//전체 삭제,등록
     private JdbcTemplate jdbcTemplate;
     
-
-
-	private DataSource dataSource;
-	
-	public void setDataSource(DataSource dataSource) {
+    private DataSource dataSource;
+    public void setDataSource(DataSource dataSource) {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		this.dataSource = dataSource;
 	}
 
-	public UserDao() {
-		
-	}
+	public UserDao() { }
 
-	
 	public int getCount(String user_id)throws ClassNotFoundException,SQLException{
-		
-		
-		int cnt = 0;
+    	int cnt = 0;
 		//--------------------------------------------
 		//DB연결
 		//--------------------------------------------
@@ -103,44 +94,32 @@ public class UserDao {
 		PreparedStatement ps = null;
 		try {
 			c = dataSource.getConnection();
-			
-			
 			ps = stmt.makeStatement(c);
 			
 			int flag = ps.executeUpdate();
 			log.debug("flag:\n"+flag);
-			
 		}catch(SQLException e) {
 			throw e;
 		}finally {
 			if(ps != null) {
-				try {
-					ps.close();
-				}catch(SQLException e) {
-					
-				}
+				try { ps.close(); }
+				catch(SQLException e) { }
 			}
 			
 			if(c != null) {
-				try {
-					c.close();
-				}catch(SQLException e) {
-					
-				}
+				try { c.close(); }
+				catch(SQLException e) { }
 			}			
 		}		
 	}
 	
-	
-	/*
-	 * 
-	 */
-	public void delAll()throws SQLException, ClassNotFoundException{
+
+	public void delAll() {
 		jdbcTemplate.update("DELETE FROM users");
 	}
 	
 	
-	public int del(String user_id)throws ClassNotFoundException,SQLException{
+	public int del(String user_id) throws SQLException{
 		//--------------------------------------------
 		//DB연결
 		//--------------------------------------------
@@ -172,7 +151,7 @@ public class UserDao {
 	}
 	
 	
-	public List<User> getAll()throws ClassNotFoundException,SQLException{
+	public List<User> getAll() {
 		//--------------------------------------------		
 		//query
 		//--------------------------------------------
@@ -189,7 +168,7 @@ public class UserDao {
 	}
 	
 	
-	public User get(String user_id)throws ClassNotFoundException,SQLException{
+	public User get(String user_id) {
 		//--------------------------------------------		
 		//query
 		//--------------------------------------------
@@ -204,19 +183,15 @@ public class UserDao {
 		
 		return this.jdbcTemplate.queryForObject(sb.toString()
 				, new Object[] {user_id}
-		        , userMapper
-		      );
-		
+		        , userMapper);
 	}
 
 	
-	public void add(final User user)throws ClassNotFoundException,SQLException{
+	public void add(final User user) {
 		StringBuilder sb=new StringBuilder();
 		sb.append(" INSERT INTO users ( u_id, name, password) VALUES (?,?,?) \n");
 		log.debug("sql:\n"+sb.toString());
 		
 		jdbcTemplate.update(sb.toString(), user.getU_id(),user.getName(),user.getPassword());
-
 	}
-
 }

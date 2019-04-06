@@ -10,7 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations="/around-applicationContext.xml")
+@ContextConfiguration(locations= "/around-applicationContext.xml")
 public class MemberAop03Around {
 	Logger log = Logger.getLogger(this.getClass());
 	
@@ -27,8 +27,5 @@ public class MemberAop03Around {
 		CommonDao dao = (CommonDao) context.getBean("dao");
 		dao.do_save();
 		//dao.do_update();
-		
-		
 	}
-	
 }

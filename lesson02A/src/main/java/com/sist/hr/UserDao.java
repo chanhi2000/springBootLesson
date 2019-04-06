@@ -15,23 +15,16 @@ public class UserDao {
 //	 * post:1521
 //	 * SID:orcl
 //	 * sist/1224
-	
-	
+
 	private static Logger log = Logger.getLogger(UserDao.class);
 	
 	private DataSource dataSource;
-	
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
 
-	public UserDao() {
-		
-	}
+	public UserDao() { }
 
-	
-	
-	
 	public int del(String user_id)throws ClassNotFoundException,SQLException{
 		//--------------------------------------------
 		//DB연결

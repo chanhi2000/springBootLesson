@@ -8,14 +8,12 @@ import org.aspectj.lang.ProceedingJoinPoint;
  *
  */
 public class AroundAdvice {
-
-	Logger  log = Logger.getLogger(this.getClass());
+	private Logger  log = Logger.getLogger(this.getClass());
 	
 	public Object aroundLog(ProceedingJoinPoint pjp)throws Throwable{
 		log.debug("[Before]: 비지니스 메소드 전에 수행 전에 처리할 내용.");
 		Object returnObj = pjp.proceed();
 		log.debug("[After]: 비지니스 메소드 전에 수행 후에 처리할 내용.");
-		
 		return returnObj;
 	}
 	

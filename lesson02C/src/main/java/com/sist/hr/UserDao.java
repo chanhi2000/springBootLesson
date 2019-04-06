@@ -17,26 +17,21 @@ public class UserDao {
 //	 * post:1521
 //	 * SID:orcl
 //	 * sist/1224
-	
-	
+
 	private static Logger log = Logger.getLogger(UserDao.class);
 	
 	private JdbcContext jdbcContext;
-	
 	public void setJdbcContext(JdbcContext jdbcContext) {
 		this.jdbcContext = jdbcContext;
 	}
 
 
 	private DataSource dataSource;
-	
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
 
-	public UserDao() {
-		
-	}
+	public UserDao() { }
 
 	
 	public int getCount(String user_id)throws ClassNotFoundException,SQLException{
@@ -122,7 +117,6 @@ public class UserDao {
 	 * 
 	 */
 	public void delAll()throws SQLException, ClassNotFoundException{
-		
 		jdbcContext.workWithStatementStrategy(
 				new StatementStrategy() {
 					public PreparedStatement makeStatement(Connection c) throws SQLException {
@@ -216,8 +210,6 @@ public class UserDao {
 
 	
 	public void add(final User user)throws ClassNotFoundException,SQLException{
-
-		
 		jdbcContext.workWithStatementStrategy(
 				new StatementStrategy() {
 					public PreparedStatement makeStatement(Connection c) throws ClassNotFoundException, SQLException {

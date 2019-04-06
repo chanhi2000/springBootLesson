@@ -13,7 +13,6 @@ public class JdbcContext {
 	private Logger log= Logger.getLogger(JdbcContext.class);
 	
 	private DataSource dataSource;
-	
     public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
@@ -28,30 +27,22 @@ public class JdbcContext {
 		PreparedStatement ps = null;
 		try {
 			c = dataSource.getConnection();
-			
-			
 			ps = stmt.makeStatement(c);
 			
 			int flag = ps.executeUpdate();
 			log.debug("flag:\n"+flag);
 			
-		}catch(SQLException e) {
+		} catch(SQLException e) {
 			throw e;
-		}finally {
+		} finally {
 			if(ps != null) {
-				try {
-					ps.close();
-				}catch(SQLException e) {
-					
-				}
+				try { ps.close(); }
+				catch(SQLException e) { }
 			}
 			
 			if(c != null) {
-				try {
-					c.close();
-				}catch(SQLException e) {
-					
-				}
+				try { c.close(); }
+				catch(SQLException e) { }
 			}			
 		}		
 	}

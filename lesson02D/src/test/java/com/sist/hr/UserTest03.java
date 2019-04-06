@@ -27,10 +27,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations="/applicationContext.xml")
+@ContextConfiguration(locations= "/applicationContext.xml")
 public class UserTest03 {
-
-	Logger  LOG = Logger.getLogger(this.getClass());
+	private Logger LOG = Logger.getLogger(this.getClass());
 	
 	@Autowired
 	private ApplicationContext context;
@@ -59,8 +58,6 @@ public class UserTest03 {
 		List<User> list = dao.getAll();
 		assertThat(list.size(), is(0));
 		LOG.debug("list:"+list);
-		
-		
 	}
 	
 	@Test
@@ -72,86 +69,77 @@ public class UserTest03 {
 	
 	
 	//메소드 예외 처리
-	@Test(expected=NullPointerException.class)
-	public void getUserFailure()throws SQLException, ClassNotFoundException{
-		ApplicationContext context 
-        = new GenericXmlApplicationContext("/applicationContext.xml");
-	 UserDao userDao = context.getBean("userDao",UserDao.class);
-		 User user01=new User("j01_115","Spring Boot","spring1234");
-		 User user02=new User("j02_115","Spring Boot","spring1234");
-		 User user03=new User("j03_115","Spring Boot","spring1234");
+	@Test(expected=EmptyResultDataAccessException.class)
+	public void getUserFailure() throws SQLException, ClassNotFoundException{
+		ApplicationContext context
+				= new GenericXmlApplicationContext("applicationContext.xml");
+	 	UserDao userDao = context.getBean("userDao",UserDao.class);
+		User user01=new User("j01_115","Spring Boot","spring1234");
+		User user02=new User("j02_115","Spring Boot","spring1234");
+		User user03=new User("j03_115","Spring Boot","spring1234");
 		 
-		 userDao.del(user01.getU_id());
-		 userDao.del(user02.getU_id());
-		 userDao.del(user03.getU_id());
+		userDao.del(user01.getU_id());
+		userDao.del(user02.getU_id());
+		userDao.del(user03.getU_id());
 		 
-		 userDao.delAll();
-		 assertThat(userDao.getCount(""), is(0));
+		userDao.delAll();
+		assertThat(userDao.getCount(""), is(0));
 		 
-		 userDao.get("unknown_id");
-		 
+		userDao.get("unknown_id");
 	}
 	
 	@Test
 	@Ignore
-	public void count()throws SQLException, ClassNotFoundException{
+	public void count()throws SQLException, ClassNotFoundException {
+		dao.del(user01.getU_id());
+		dao.del(user02.getU_id());
+		dao.del(user03.getU_id());
 
-		 
-		 dao.del(user01.getU_id());
-		 dao.del(user02.getU_id());
-		 dao.del(user03.getU_id());
-		 
-		 dao.add(user01);
-		 assertThat(dao.getCount("115"), is(1));
-		 
-		 dao.add(user02);
-		 assertThat(dao.getCount("115"), is(2));
-		 
-		 dao.add(user03);
-		 assertThat(dao.getCount("115"), is(3));		 
-		
+		dao.add(user01);
+		assertThat(dao.getCount("115"), is(1));
+
+		dao.add(user02);
+		assertThat(dao.getCount("115"), is(2));
+
+		dao.add(user03);
+		assertThat(dao.getCount("115"), is(3));
 	}
 	
 	@Test
 	@Ignore
 	public void addAndGet()throws SQLException, ClassNotFoundException{
-
-
-
-	//Spring은 SingleTon으로 객체를 생성한다.
-	//1.객체 2개 생성확인
-	LOG.debug("=============================");
-	LOG.debug("=dao="+dao);
-	LOG.debug("=============================");
-	
-	
-	//--------------------------------
-	//단건 삭제
-	//--------------------------------	
-	int result = dao.del(user01.getU_id());
-	if(result>0) {
+		//Spring은 SingleTon으로 객체를 생성한다.
+		// 1.객체 2개 생성확인
 		LOG.debug("=============================");
-		LOG.debug("=del result="+result);
+		LOG.debug("=dao="+dao);
 		LOG.debug("=============================");
-	}
-	
-	//--------------------------------
-	//단건 등록
-	//--------------------------------			
-	dao.add(user01);
-	
-	//--------------------------------
-	//단건 조회
-	//--------------------------------				
-	User inUser = dao.get(user01.getU_id());
-	
-	//--------------------------------
-	//비교
-	//--------------------------------				
-	assertThat(user01.getU_id(),is(inUser.getU_id()));
-	assertThat(user01.getName(),is(inUser.getName()));
-	assertThat(user01.getPassword(),is(inUser.getPassword()));
-	
+
+		//--------------------------------
+		//단건 삭제
+		//--------------------------------
+		int result = dao.del(user01.getU_id());
+		if(result>0) {
+			LOG.debug("=============================");
+			LOG.debug("=del result="+result);
+			LOG.debug("=============================");
+		}
+
+		//--------------------------------
+		//단건 등록
+		//--------------------------------
+		dao.add(user01);
+
+		//--------------------------------
+		//단건 조회
+		//--------------------------------
+		User inUser = dao.get(user01.getU_id());
+
+		//--------------------------------
+		//비교
+		//--------------------------------
+		assertThat(user01.getU_id(),is(inUser.getU_id()));
+		assertThat(user01.getName(),is(inUser.getName()));
+		assertThat(user01.getPassword(),is(inUser.getPassword()));
 	}
 	
 	@Test
