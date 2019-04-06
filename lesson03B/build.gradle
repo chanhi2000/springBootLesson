@@ -1,0 +1,24 @@
+sourceSets {
+	main {
+		java.srcDirs += ["src/main/java"]
+		resources.srcDirs += ["src/main/resources"]
+	}
+	test {
+		java.srcDirs += ["src/test/java"]
+	}
+}
+
+task(runMain, dependsOn: "classes", type: JavaExec) {
+	main = 'com.sist.hr.UserDao'
+	classpath = sourceSets.main.runtimeClasspath
+}
+
+dependencies {
+	implementation dep.ojdbc6
+	implementation dep.log4j
+	implementation dep.spring
+	implementation dep.aspectj
+	
+	testImplementation dep.springTest
+    testImplementation dep.junit
+}
