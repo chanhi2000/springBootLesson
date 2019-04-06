@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:lang="http://www.springframework.org/schema/lang"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd">
+
+	<bean id="dao" class="com.sist.hr.MemberDao" />
+	
+	<bean id="loggingAOP" class="com.sist.hr.LoggingAOP"/>
+	
+	<bean id="aroundAdvice" class="com.sist.hr.AroundAdvice" />
+	
+	
+	<!-- AOP Config:after -->
+	<aop:config>
+	    <aop:pointcut expression="execution(* com.sist.hr.MemberDao.*(..))" id="logPointCut"/>
+		<aop:aspect ref="aroundAdvice" order="1">
+			<aop:around method="aroundLog" pointcut-ref="logPointCut"/>
+		</aop:aspect>
+	</aop:config>
+
+</beans>
