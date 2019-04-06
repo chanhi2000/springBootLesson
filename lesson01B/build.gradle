@@ -9,7 +9,7 @@ sourceSets {
 }
 
 task(runMain, dependsOn: "classes", type: JavaExec) {
-	main = 'com.hr.UserDao'
+	main = 'com.sist.hr.UserDao'
 	classpath = sourceSets.main.runtimeClasspath
 }
 
